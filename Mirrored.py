@@ -5,15 +5,13 @@ import requests
 import json
 
 #inputs
-#weather_api_token = '53ab19cfa7d75e3012b1767a35e8057b'
+#weather_api_token = 'XXX'
 #weather_unit = 'us'
-#ip = '173.63.112.239' #Get a new one for the Apartment
-#google_api = 'AIzaSyAXWyIIHISHL3U7-lkQO3rgXS-CO_7v-GE'
-r = requests.get('https://api.darksky.net/forecast/53ab19cfa7d75e3012b1767a35e8057b/40.825901,-74.209005')
+#ip = 'XXX' #Get a new one for the Apartment
+#google_api = 'XXX'
+r = requests.get('https://api.darksky.net/forecast/WEATHER_API_TOKEN/LAT,LONG')
 weather_obj = json.loads(r.text)
 degree_sign = u'\N{DEGREE SIGN}'
-rm = requests.get('https://maps.googleapis.com/maps/api/staticmap?center=Australia&size=640x400&style=element:labels|visibility:off&style=element:geometry.stroke|visibility:off&style=feature:landscape|element:geometry|saturation:-100&style=feature:water|saturation:-100|invert_lightness:true&key=AIzaSyAXWyIIHISHL3U7-lkQO3rgXS-CO_7v-GE')
-#map_obj = json.loads(rm.image)
 
 """Icon Lookup"""
 icon_lookup = {
@@ -77,8 +75,6 @@ class Weather(Frame):
             self.current_icon.config(image=icon)
             self.current_icon.image = icon
             self.icon_spot = self.icon_id
-
-"""API 3"""
 
 """WINDOW"""
 class FullScreen:
