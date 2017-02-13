@@ -55,6 +55,8 @@ class Weather(Frame):
     def __init__(self, master, *args, **kwargs):
         Frame.__init__(self, master, bg='black')
         self.icon_spot = ''
+        self.conditions_spot = ''
+        self.temp_spot = ''
         self.icon = PhotoImage(file=icon_lookup[weather_obj['currently']['icon']])
         self.current_icon = Label(master, fg='white', bg='black', text=weather_obj['currently']['icon'])
         self.current_icon.pack(ipady=10, anchor=SW, expand=NO)
@@ -63,14 +65,23 @@ class Weather(Frame):
         self.current_temp = Label(master, font=("Helvetica",50), fg='white', bg='black', text = "%s%s" % (int(weather_obj['currently']['temperature']), degree_sign))
         self.current_temp.pack(anchor=SW, expand=NO)
         self.icon_id = weather_obj['currently']['icon']
+        self.tick()
 
-        #icon image placement & replacement
+        def tick(self):
+        conditions_id = weather_obj['currently']['summary']
+        temp_id = "%s%s" % (int(weather_obj['currently']['temperature']), degree_sign)
         icon = PhotoImage(file=icon_lookup[weather_obj['currently']['icon']])
-        while self.icon_spot != self.icon_id:
-            icon = PhotoImage(file=icon_lookup[weather_obj['currently']['icon']])
+        if self.conditions_spot != conditions_id:
+            self.conditions_spot = conditions_id
+            self.current_conditions.config(text=conditions_id)
+        if self.icon_spot != self.icon_id:
             self.current_icon.config(image=icon)
             self.current_icon.image = icon
             self.icon_spot = self.icon_id
+        if self.temp_spot != temp_id:
+            self.temp_spot = temp_id
+            self.current_temp.config(text=temp_id)
+        self.current_temp.after(20000, self.tick)
 
 """WINDOW"""
 class FullScreen:
