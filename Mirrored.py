@@ -52,9 +52,6 @@ class Clock(Frame):
 
 """WEATHER"""
 class Weather(Frame):
-
-
-
     def __init__(self, master, *args, **kwargs):
         Frame.__init__(self, master, bg='black')
         self.icon_spot = ''
@@ -68,7 +65,6 @@ class Weather(Frame):
         self.icon_id = weather_obj['currently']['icon']
 
         #icon image placement & replacement
-
         icon = PhotoImage(file=icon_lookup[weather_obj['currently']['icon']])
         while self.icon_spot != self.icon_id:
             icon = PhotoImage(file=icon_lookup[weather_obj['currently']['icon']])
