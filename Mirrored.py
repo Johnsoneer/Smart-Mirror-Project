@@ -15,19 +15,19 @@ degree_sign = u'\N{DEGREE SIGN}'
 
 """Icon Lookup"""
 icon_lookup = {
-    'cloudy': r'/Users/William/Desktop/Mirror/icons/icon:cloudy.gif',
-    'wind': r'/Users/William/Desktop/Mirror/icons/icon:wind.gif',
-    'clear-day': r'/Users/William/Desktop/Mirror/icons/icon:clear-day.gif',
-    'clear-night': r'/Users/William/Desktop/Mirror/icons/icon:clear-night.gif',
-    'partly-cloudy-day':r'/Users/William/Desktop/Mirror/icons/icon:partly-cloudy-day.gif',
-    'partly-cloudy-night': r'/Users/William/Desktop/Mirror/icons/icon:partly-cloudy-night.gif',
-    'snow':r'/Users/William/Desktop/Mirror/icons/icon:snow.gif',
-    'snow-thin':r'/Users/William/Desktop/Mirror/icons/icon:snow-thin.gif',
-    'rain': r'/Users/William/Desktop/Mirror/icons/icon:rain.gif',
-    'thunderstorm': r'/Users/William/Desktop/Mirror/icons/icon:thundersorm.gif',
-    'hail': r'/Users/William/Desktop/Mirror/icons/icon:hail.gif',
-    'fog': r'/Users/William/Desktop/Mirror/icons/icon:fog.gif',
-    'tornado': r'/Users/William/Desktop/Mirror/icons/icon:tornado.gif'
+    'cloudy': r'/Users/USERNAME/Desktop/Mirror/icons/icon:cloudy.gif',
+    'wind': r'/Users/USERNAME/Desktop/Mirror/icons/icon:wind.gif',
+    'clear-day': r'/Users/USERNAME/Desktop/Mirror/icons/icon:clear-day.gif',
+    'clear-night': r'/Users/USERNAME/Desktop/Mirror/icons/icon:clear-night.gif',
+    'partly-cloudy-day':r'/Users/USERNAME/Desktop/Mirror/icons/icon:partly-cloudy-day.gif',
+    'partly-cloudy-night': r'/Users/USERNAME/Desktop/Mirror/icons/icon:partly-cloudy-night.gif',
+    'snow':r'/Users/USERNAME/Desktop/Mirror/icons/icon:snow.gif',
+    'snow-thin':r'/Users/USERNAME/Desktop/Mirror/icons/icon:snow-thin.gif',
+    'rain': r'/Users/USERNAME/Desktop/Mirror/icons/icon:rain.gif',
+    'thunderstorm': r'/Users/USERNAME/Desktop/Mirror/icons/icon:thundersorm.gif',
+    'hail': r'/Users/USERNAME/Desktop/Mirror/icons/icon:hail.gif',
+    'fog': r'/Users/USERNAME/Desktop/Mirror/icons/icon:fog.gif',
+    'tornado': r'/Users/USERNAME/Desktop/Mirror/icons/icon:tornado.gif'
 
 }
 
