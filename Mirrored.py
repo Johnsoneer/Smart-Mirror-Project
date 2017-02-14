@@ -9,9 +9,7 @@ import json
 #weather_unit = 'us'
 #ip = 'XXX' #Get a new one for the Apartment
 #google_api = 'XXX'
-r = requests.get('https://api.darksky.net/forecast/WEATHER_API_TOKEN/LAT,LONG')
-weather_obj = json.loads(r.text)
-degree_sign = u'\N{DEGREE SIGN}'
+
 
 """Icon Lookup"""
 icon_lookup = {
@@ -49,39 +47,46 @@ class Clock(Frame):
         # calls itself every 200 milliseconds
         self.clock.after(200, self.tick)
 
-
 """WEATHER"""
 class Weather(Frame):
+
+
+
     def __init__(self, master, *args, **kwargs):
         Frame.__init__(self, master, bg='black')
         self.icon_spot = ''
         self.conditions_spot = ''
         self.temp_spot = ''
-        self.icon = PhotoImage(file=icon_lookup[weather_obj['currently']['icon']])
-        self.current_icon = Label(master, fg='white', bg='black', text=weather_obj['currently']['icon'])
+        self.current_icon = Label(master, fg='white', bg='black', text=self.icon_spot)
         self.current_icon.pack(ipady=10, anchor=SW, expand=NO)
-        self.current_conditions = Label(master, font=("Helvetica", 30), fg='white', bg='black', text=weather_obj['currently']['summary'])
+        self.current_conditions = Label(master, font=("Helvetica", 30), fg='white', bg='black', text=self.conditions_spot)
         self.current_conditions.pack(anchor=SW, expand=NO)
-        self.current_temp = Label(master, font=("Helvetica",50), fg='white', bg='black', text = "%s%s" % (int(weather_obj['currently']['temperature']), degree_sign))
+        self.current_temp = Label(master, font=("Helvetica",50), fg='white', bg='black', text = self.temp_spot)
         self.current_temp.pack(anchor=SW, expand=NO)
-        self.icon_id = weather_obj['currently']['icon']
-        self.tick()
+        self.tock()
+        
 
-        def tick(self):
+    def tock(self):
+        r = requests.get('https://api.darksky.net/forecast/53ab19cfa7d75e3012b1767a35e8057b/40.825901,-74.209005')
+        weather_obj = json.loads(r.text)
+        degree_sign = u'\N{DEGREE SIGN}'
+
         conditions_id = weather_obj['currently']['summary']
         temp_id = "%s%s" % (int(weather_obj['currently']['temperature']), degree_sign)
+        icon_id = weather_obj['currently']['icon']
         icon = PhotoImage(file=icon_lookup[weather_obj['currently']['icon']])
-        if self.conditions_spot != conditions_id:
-            self.conditions_spot = conditions_id
-            self.current_conditions.config(text=conditions_id)
-        if self.icon_spot != self.icon_id:
-            self.current_icon.config(image=icon)
-            self.current_icon.image = icon
-            self.icon_spot = self.icon_id
-        if self.temp_spot != temp_id:
+        if temp_id != self.temp_spot:
             self.temp_spot = temp_id
             self.current_temp.config(text=temp_id)
-        self.current_temp.after(20000, self.tick)
+        if conditions_id != self.conditions_spot:
+            self.conditions_spot = conditions_id
+            self.current_conditions.config(text=conditions_id)
+        if self.icon_spot != icon_id:
+            self.current_icon.config(image=icon)
+            self.current_icon.image = icon
+            self.icon_spot = icon_id
+        self.after(60000, self.tock)
+
 
 """WINDOW"""
 class FullScreen:
