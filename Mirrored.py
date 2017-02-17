@@ -52,17 +52,17 @@ class Weather(Frame):
 
 
 
-    def __init__(self, master, *args, **kwargs):
+        def __init__(self, master, *args, **kwargs):
         Frame.__init__(self, master, bg='black')
         self.icon_spot = ''
         self.conditions_spot = ''
         self.temp_spot = ''
         self.current_icon = Label(master, fg='white', bg='black', text=self.icon_spot)
-        self.current_icon.pack(ipady=10, anchor=SW, expand=NO)
-        self.current_conditions = Label(master, font=("Helvetica", 30), fg='white', bg='black', text=self.conditions_spot)
-        self.current_conditions.pack(anchor=SW, expand=NO)
+        self.current_icon.pack(ipady=10, side=TOP, anchor=NW, expand=NO)
+        self.current_conditions = Label(master, font=("Helvetica", 50), fg='white', bg='black', text=self.conditions_spot)
+        self.current_conditions.pack(side=LEFT, expand=NO)
         self.current_temp = Label(master, font=("Helvetica",50), fg='white', bg='black', text = self.temp_spot)
-        self.current_temp.pack(anchor=SW, expand=NO)
+        self.current_temp.pack(side= LEFT, expand=NO)
         self.tock()
         
 
@@ -88,6 +88,34 @@ class Weather(Frame):
         self.after(60000, self.tock)
 
 
+        
+        
+""Traffic to NYC"""
+class Traffic(Frame):
+
+    def __init__(self, master, *args, **kwargs):
+        Frame.__init__(self, master, bg='black')
+        self.current_travel = ''
+        self.Labeler = Label(master, font= ('Helvetica',25), bg='black', fg='white', text='Time to NYC:')
+        self.Labeler.pack(side=TOP, anchor=NE, expand=NO)
+        self.traffic_time = Label(master, font= ('Helvetica',50), bg='black', fg='white', text=self.current_travel)
+        self.traffic_time.pack(side=RIGHT, expand=NO)
+        self.get_traffic()
+
+    def get_traffic(self):
+        r = requests.get('https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&departure_time=now&traffic_model&pessimistic&origins=ADDRESS&destinations=ADdRESS&key=YOUR_API_KEY')
+        traffic_obj = json.loads(r.text)
+
+        elements = traffic_obj['rows'][0]
+        ETT = elements['elements'][0]['duration_in_traffic']['text']
+
+        if self.current_travel != ETT:
+            self.current_travel = ETT
+            self.traffic_time.config(text=ETT)
+        self.after(900000, self.get_traffic)
+
+
+
 """WINDOW"""
 class FullScreen:
     def __init__(self):
@@ -96,8 +124,10 @@ class FullScreen:
         self.tk.configure(background='black')
         self.topframe = Frame(self.tk, bg='black')
         self.topframe.pack(side=TOP, fill=BOTH, expand=NO)
-        self.bottomframe = Frame(self.tk, bg='black')
-        self.bottomframe.pack(side=BOTTOM, fill=BOTH, expand=NO)
+        self.bottomframe1 = Frame(self.tk, bg='black')
+        self.bottomframe1.pack(side=BOTTOM, fill=BOTH, expand=NO)
+        self.bottomframe2 = Frame(self.tk, bg='black')
+        self.bottomframe2.pack(side=BOTTOM, fill=BOTH, expand=NO)
         self.tk.bind("<Return>", self.Toggle_Full)
         self.tk.bind("<Escape>", self.end_full)
         self.check = False
@@ -105,8 +135,11 @@ class FullScreen:
         self.clock = Clock(self.topframe)
         self.clock.pack(side=TOP)
         #Weather
-        self.weather = Weather(self.bottomframe)
-        self.weather.pack()
+        self.weather = Weather(self.bottomframe2)
+        self.weather.pack(side=LEFT)
+        #traffic
+        self.traffic = Traffic(self.bottomframe2)
+        self.traffic.pack(side=LEFT)
 
     def Toggle_Full(self, event=None):
         self.check = not self.check
