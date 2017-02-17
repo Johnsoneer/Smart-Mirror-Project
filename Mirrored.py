@@ -90,7 +90,7 @@ class Weather(Frame):
 
         
         
-""Traffic to NYC"""
+"""Traffic to NYC"""
 class Traffic(Frame):
 
     def __init__(self, master, *args, **kwargs):
