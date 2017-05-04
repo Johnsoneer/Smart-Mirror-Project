@@ -1,5 +1,7 @@
 # Smart-Mirror-Project
-As a learning experience, I've been developing a smart-mirror python program for a raspberri pi setup. It uses free APIs to get info to display on a smart-mirror hardware build. 
+As a learning experience, I developed a smart-mirror python program for a raspberri pi hardwired into an LCD monitor behind a two-way mirror. The idea is to have a regular decorative household mirror that also displays meaningful information like weather, time, news, and current commute time between the mirror and work.
+
+If you'd like to implement this onto a raspberri pi, a few things you'll need is the Tkinter library as well as some way to get JSON information. I use requests.
 
 Notice in the 'icons' folder I have duplicate icons in different file formats. For whatever reason, PIL was not working for me so I could not use the ImageTk module to get PNG files to work, so to get around that I simply reformated my PNG icons to GIF files and it works just fine without importing from the PIL library. 
 
