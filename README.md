@@ -1,3 +1,5 @@
+[Alt_Text](blob/master/51604843800__1D61830E-0AE5-49E2-B34D-9A3B17767084.JPG?raw=True)
+
 # Smart-Mirror-Project
 As a learning experience, I developed a smart-mirror python program for a raspberri pi hardwired into an LCD monitor behind a two-way mirror. The idea is to have a regular decorative household mirror that also displays meaningful information like weather, time, news, and current commute time between the mirror and work.
 
